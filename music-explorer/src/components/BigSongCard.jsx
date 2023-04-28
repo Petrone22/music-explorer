@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import img from "../assets/acrossthedark.png";
 import spotify from "../assets/spotify.svg";
 import playBtn from "../assets/play.svg";
+
 const BigSongCard = () => {
   const [hovered, setHovered] = useState(false);
+
   return (
     <div
-      className="h-14 hover:bg-neutral-800 duration-100 ease-linear rounded-md flex items-center p-8 cursor-pointer"
+      className="h-14 hover:bg-neutral-700 duration-100 ease-linear rounded-md flex items-center p-8 cursor-pointer"
       onMouseEnter={() => {
         setHovered((prevHover) => true);
       }}
