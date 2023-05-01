@@ -1,5 +1,6 @@
-import React from "react";
-import img from "../assets/acrossthedark.png";
+// big bg, small bg, description, play song, page title, page subtitle
+
+import React, { useEffect } from "react";
 import play from "../assets/playMain.svg";
 import pause from "../assets/pause.svg";
 import backbtn from "../assets/back.svg";
@@ -7,21 +8,29 @@ import frontbtn from "../assets/front.svg";
 import volume from "../assets/volume.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMediaIsPlaying } from "../state/isPlayingSlice";
-
 const Controller = () => {
-  const mediaIsPlaying = useSelector((state) => state.mediaIsPlaying.value);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    const audioPlayer = new Audio();
+  });
 
+  const title = useSelector((state) => state.title.value);
+  const subTitle = useSelector((state) => state.subTitle.value);
+  const mediaIsPlaying = useSelector((state) => state.mediaIsPlaying.value);
+  const smallBG = useSelector((state) => state.smallBG.value);
+  const runtime = useSelector((state) => state.runtime.value);
+  const dispatch = useDispatch();
   return (
-    <div className="rounded-md flex items-center mb-4 lg:justify-center gap-6 ">
-      <div className=" rounded-md p-2 hidden lg:flex gap-2 items-center ">
-        <img src={img} className="h-14 rounded-md " alt="background" />
+    <div className="rounded-md flex items-center justify- mb-4 lg:justify-center gap-6">
+      <div className=" rounded-md p-2 top-4 lg:flex gap-2 items-center ">
+        <img src={smallBG} className="w-14 rounded-md " alt="background" />
         <div className="flex flex-col justify-end">
-          <span className="font-circular">Equivalence</span>
-          <span className="text-sm font-semibold">Insomnium</span>
+          <span className="hidden lg:block font-circular">{title}</span>
+          <span className="hidden lg:block whitespace-nowrap font-semibold">
+            {subTitle}
+          </span>
         </div>
       </div>
-      <div className="w-10/12 flex flex-col ">
+      <div className="w-full flex flex-col ">
         <div className="flex gap-6 p-2 items-center justify-center">
           <img src={backbtn} alt="back" className="active:scale-95" />
           <img
@@ -34,8 +43,14 @@ const Controller = () => {
           />
           <img src={frontbtn} alt="front" className="active:scale-95" />
         </div>
-        <div className="flex gap-6  items-center justify-center">
+        <div className="flex gap-6  items-center justify-center relative">
           <input type="range" className="w-10/12" />
+          <span className="absolute font-thin text-md -right-3 lg:font-normal lg:text-base lg:right-8 ">
+            {runtime}
+          </span>
+          <span className="absolute font-thin text-md left-0 lg:font-normal lg:text-base lg:left-14 ">
+            0
+          </span>
         </div>
       </div>
       <div className="hidden lg:block  w-24">

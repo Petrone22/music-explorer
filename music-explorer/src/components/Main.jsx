@@ -20,12 +20,17 @@ const Main = () => {
             className="h-full w-full flex flex-col gap-16 items-center justify-center "
             style={{ display: introVisible ? "flex" : "none" }}
           >
-            <p className="w-10/12 p-10 bg-neutral-950 rounded-lg text-center">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              fuga aliquam id quos at voluptatibus molestiae cumque. Veritatis,
-              placeat autem ipsam debitis, perspiciatis, sequi deleniti sint
-              fugit at quae excepturi facilis incidunt porro cum? Dolor, vitae.
-              Iure nemo deserunt atque?sadsa sadsaodnas
+            <p className="w-10/12 p-10 bg-neutral-950 rounded-lg text-center font-semibold">
+              In this Application, you'll get a glimpse of my music taste, this
+              means that this application may be divisive and that you may or
+              may not find whatever type of music that suits you. but I assure
+              you that for me, these 40-some hand picked songs are pretty much
+              the best that the music world has to offer. each song has had its
+              own story and imact on my life, one way or another, I also made
+              sure to write a small piece on each of these songs so you can
+              appreciate every element of the genius behind these pieces of art.{" "}
+              <br /> So, sit back, relax and let me take you on a journey
+              through emotion and artistic beauty.
             </p>
             <button
               onClick={() => {
