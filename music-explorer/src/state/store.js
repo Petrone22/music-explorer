@@ -23,6 +23,13 @@ import descriptionSliceReducer from "./descriptionSlice";
 
 //IMPORT runtime displare
 import runtimeSliceReducer from "./runtimeSlice";
+
+//IMPORT progress bar duration
+import progressBarDurationReducer from "./progressBarDuration";
+
+//IMPORT current time slice
+import currentTimeSliceReducer from "./currentTimeSlice";
+
 export default configureStore({
   reducer: {
     mediaIsPlaying: isPlayingSliceReducer,
@@ -33,5 +40,7 @@ export default configureStore({
     subTitle: subTitleSliceReducer,
     description: descriptionSliceReducer,
     runtime: runtimeSliceReducer,
+    progressBar: progressBarDurationReducer,
+    currentTime: currentTimeSliceReducer,
   },
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import BigSongCard from "./BigSongCard";
 import data from "../assets/data";
-const songList = () => {
+const songList = ({ audioRef }) => {
   const dataArray = Object.entries(data);
   return (
     <div className="h-fit px-4 pt-2 flex flex-col ">
@@ -18,6 +18,7 @@ const songList = () => {
       {dataArray.map((song, i) => {
         return (
           <BigSongCard
+            audioRef={audioRef}
             key={i}
             title={song[1].title}
             artist={song[1].artist}
@@ -26,6 +27,7 @@ const songList = () => {
             type={song[1].type}
             album={song[1].album}
             runtime={song[1].runtime}
+            piece={song[1].piece}
           />
         );
       })}

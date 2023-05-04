@@ -4,7 +4,7 @@ import SongList from "./SongList";
 import SongDesc from "./SongDesc";
 import { useDispatch, useSelector } from "react-redux";
 
-const player = () => {
+const player = ({ audioRef }) => {
   const dispatch = useDispatch();
   const smallBG = useSelector((state) => state.smallBG.value);
   const bg = useSelector((state) => state.playerBG.value);
@@ -14,7 +14,7 @@ const player = () => {
   const [page, setPage] = useState(0);
   const pageDisplay = () => {
     if (page === 0) {
-      return <SongList />;
+      return <SongList audioRef={audioRef} />;
     } else {
       return <SongDesc />;
     }
@@ -37,7 +37,7 @@ const player = () => {
             className="w-300 h-300 rounded-full"
           />
           <div className="w-full flex flex-col ">
-            <span className="font-bold text-7xl mb-8 text-center lg:text-start lg:mb-0">
+            <span className="font-bold text-7xl mb-8 text-center lg:text-start lg:mb-0 lg:-ml-2">
               {title}
             </span>
             <span className="font-bold text-2xl text-center lg:text-start">

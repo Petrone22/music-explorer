@@ -11,7 +11,7 @@ const data = {
     piece: "insomniummminsomniummminsomniummminsomniummm",
   },
   rap: {
-    title: "Best friends",
+    title: "Best Friends",
     artist: "The Weeknd",
     album: "Dawn FM",
     runtime: "2:55",

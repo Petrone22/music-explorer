@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useRef } from "react";
 import Player from "./Player.jsx";
 import List from "./List";
 import Controller from "./Controller.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleIntro } from "../state/introVisibleSlice.js";
-
+import { changeRuntime } from "../state/runtimeSlice.js";
+import { changeCurrentTime } from "../state/currentTimeSlice.js";
 const Main = () => {
+  const audioRef = useRef(null);
   const introVisible = useSelector((state) => state.introVisible.value);
+  const current = useSelector((state) => state.currentTime.value);
   const dispatch = useDispatch();
+  // let ready = audioRef.current.readyState;
+  const formatTime = (time) => {
+    if (time && !isNaN(time)) {
+      const minutes = Math.floor(time / 60);
+      const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+      const seconds = Math.floor(time % 60);
+      const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+      return `${formatMinutes}:${formatSeconds}`;
+    }
+    return "00:00";
+  };
 
   return (
     <div className="bg-black h-full w-full flex flex-col gap-3 ">
@@ -41,11 +55,27 @@ const Main = () => {
               Explore
             </button>
           </div>
-          <Player />
+          <Player audioRef={audioRef} />
         </div>
       </div>
       <div className="bg-neutral-900 h-24 px-4">
-        <Controller />
+        <audio
+          src=""
+          ref={audioRef}
+          onTimeUpdate={(e) => {
+            if (e.target.currentTime) {
+              dispatch(changeCurrentTime(e.target.currentTime));
+            } else {
+              return;
+            }
+          }}
+          crossOrigin="anonymous"
+          preload="auto"
+          onLoadedMetadata={(e) => {
+            dispatch(changeRuntime(formatTime(e.target.duration)));
+          }}
+        ></audio>
+        <Controller audioRef={audioRef} currentTime={current} />
       </div>
     </div>
   );

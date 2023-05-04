@@ -6,8 +6,8 @@ export const isPlayingSlice = createSlice({
     value: false,
   },
   reducers: {
-    toggleMediaIsPlaying: (state) => {
-      state.value = !state.value;
+    toggleMediaIsPlaying: (state, action) => {
+      state.value = action.payload;
     },
   },
 });

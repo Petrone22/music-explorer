@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import spotify from "../assets/spotify.svg";
 import playBtn from "../assets/play.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeBG } from "../state/playerBGSlice";
 import { changeSmallBG } from "../state/smallBGSlice";
 import { changeSubTitle } from "../state/subTitleSlice";
 import { changeTitle } from "../state/titleSlice";
 import { changeRuntime } from "../state/runtimeSlice";
 import { changeDescription } from "../state/descriptionSlice";
+import { toggleMediaIsPlaying } from "../state/isPlayingSlice";
 const BigSongCard = ({
+  audioRef,
   title,
   image,
   artist,
@@ -16,13 +18,26 @@ const BigSongCard = ({
   album,
   runtime,
   bigImage,
+  piece,
 }) => {
   const dispatch = useDispatch();
+  const startPlayingSong = () => {
+    dispatch(changeTitle(title));
+    dispatch(changeSubTitle(artist));
+    dispatch(changeSmallBG(image));
+    dispatch(changeBG(bigImage));
+    dispatch(changeDescription(piece));
+    dispatch(toggleMediaIsPlaying(true));
+    let trackSRC = `./${title}.mp3`;
+    audioRef.current.load();
+    audioRef.current.src = trackSRC;
+    audioRef.current.play();
+  };
 
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="h-14 hover:bg-neutral-700 duration-100 ease-linear rounded-md flex items-around lg:items-center p-8 cursor-pointer"
+      className="lg:h-14 hover:bg-neutral-700 duration-100 ease-linear rounded-md flex items-around lg:items-center mb-4 p-2 lg:p-8 cursor-pointer"
       onMouseEnter={() => {
         setHovered((prevHover) => true);
       }}
@@ -30,12 +45,7 @@ const BigSongCard = ({
         setHovered((prevHover) => false);
       }}
       onClick={() => {
-        dispatch(changeTitle(title));
-        dispatch(changeSubTitle(artist));
-        dispatch(changeSmallBG(image));
-        dispatch(changeBG(bigImage));
-        dispatch(changeRuntime(runtime));
-        dispatch(changeDescription(artist));
+        startPlayingSong();
       }}
     >
       <img
