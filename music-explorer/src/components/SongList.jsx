@@ -5,15 +5,19 @@ const songList = ({ audioRef }) => {
   const dataArray = Object.entries(data);
   return (
     <div className="h-fit px-4 pt-2 flex flex-col ">
-      <div className="h-14  rounded-md flex  justify-between  lg:items-center p-8 mb-2">
+      <div className="h-14  rounded-md flex  justify-around   lg:items-center py-8 px-2 lg:p-8 mb-2">
         <div className="lg:w-2/3 flex gap-2 ">
           <div className="text-center w-1/3 font-circular">Title</div>
         </div>
-        <div className="w-2/5 lg:w-full lg:grid lg:grid-flow-col  lg:place-items-end gap-4 lg:grid-cols-4">
-          <div className="font-medium  hidden lg:block ">Album</div>
-          <div className="font-medium  hidden lg:block ">Song type</div>
-          <span className="font-mono">duration</span>
+        <div className="w-full lg:flex flex justify-around  ">
+          <div className="font-medium  hidden lg:block text-start  ">Album</div>
+          <div className="font-medium  hidden lg:block text-start w-36  ">
+            Song type
+          </div>
         </div>
+        <span className="font-mono block w-28 text-end whitespace-nowrap ">
+          Spotify link
+        </span>
       </div>
       {dataArray.map((song, i) => {
         return (

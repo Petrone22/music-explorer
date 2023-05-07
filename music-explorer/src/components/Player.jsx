@@ -37,7 +37,7 @@ const player = ({ audioRef }) => {
             className="w-300 h-300 rounded-full"
           />
           <div className="w-full flex flex-col ">
-            <span className="font-bold text-7xl mb-8 text-center lg:text-start lg:mb-0 lg:-ml-2">
+            <span className="font-bold text-center text-5xl lg:text-7xl mb-8 lg:text-start lg:mb-0 lg:-ml-2">
               {title}
             </span>
             <span className="font-bold text-2xl text-center lg:text-start">

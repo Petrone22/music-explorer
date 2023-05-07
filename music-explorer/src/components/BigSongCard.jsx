@@ -58,17 +58,16 @@ const BigSongCard = ({
       />
       <div className="w-2/3 flex gap-2 ">
         <img src={image} className="h-12" alt="Background" />
-        <div className="flex flex-col h-full">
-          <span className="font-circular">{title}</span>
-          <span className="font-semibold">{artist}</span>
+        <div className="flex flex-col w-full h-full">
+          <span className="font-semibold text-md w-28 lg:w-fit">{title}</span>
+          <span className="font-semibold text-xs w-28 lg:w-fit">{artist}</span>
         </div>
       </div>
-      <div className="w-full grid grid-flow-col  place-items-end lg:gap-4 lg:grid-cols-4">
-        <div className="font-medium  hidden lg:block ">{album}</div>
-        <div className="font-medium  hidden lg:block ">{type}</div>
-        <span className="font-mono">{runtime}</span>
-        <a target="_blank" href="https://www.spotify.com">
-          <img src={spotify} alt="Song Link" />
+      <div className="w-full flex  justify-end">
+        <div className="font-medium w-full hidden lg:block ">{album}</div>
+        <div className="font-medium  w-full hidden lg:block ">{type}</div>
+        <a target="_blank" href="https://www.spotify.com" className="w-20">
+          <img src={spotify} alt="Song Link" className="" />
         </a>
       </div>
     </div>
