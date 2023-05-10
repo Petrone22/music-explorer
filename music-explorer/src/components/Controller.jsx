@@ -52,7 +52,11 @@ const Controller = ({ audioRef, currentTime }) => {
             alt="back"
             className="active:scale-95"
             onClick={() => {
-              audioRef.current.currentTime -= 30;
+              if (audioRef.current.currentTime) {
+                audioRef.current.currentTime -= 30;
+              } else {
+                return;
+              }
             }}
           />
 
@@ -76,7 +80,11 @@ const Controller = ({ audioRef, currentTime }) => {
             alt="front"
             className="active:scale-95"
             onClick={() => {
-              audioRef.current.currentTime += 30;
+              if (audioRef.current.currentTime) {
+                audioRef.current.currentTime += 30;
+              } else {
+                return;
+              }
             }}
           />
         </div>
@@ -95,7 +103,13 @@ const Controller = ({ audioRef, currentTime }) => {
             {runtime}
           </span>
           <span className="absolute font-thin text-md left-0 lg:font-normal lg:text-base lg:left-16 ">
-            {formatTime(audioRef.current.currentTime)}
+            {audioRef.current.currentTime ? (
+              <a className="pointer-events-none">
+                {formatTime(audioRef.current.currentTime)}
+              </a>
+            ) : (
+              <a className="pointer-events-none">0</a>
+            )}
           </span>
         </div>
       </div>
