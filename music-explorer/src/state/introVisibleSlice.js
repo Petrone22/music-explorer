@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const introVisibleSlice = createSlice({
   name: "introVisible",
   initialState: {
-    value: false,
+    value: true,
   },
   reducers: {
     toggleIntro: (state) => {

@@ -27,7 +27,7 @@ const Main = () => {
     <div className="bg-black h-full w-full flex flex-col gap-3 ">
       <div className="w-full flex gap-2 h-full pt-3 overflow-hidden">
         <div className="bg-black h-full w-1/5 rounded-md hidden lg:block overflow-hidden ">
-          <List />
+          <List audioRef={audioRef} />
         </div>
         <div className="bg-neutral-900 w-full rounded-md overflow-y-scroll">
           <div

@@ -2,7 +2,9 @@ import React from "react";
 import spotify from "../assets/spotify.svg";
 import pfp from "../assets/pfp.jpg";
 import SongCard from "./SongCard";
-const List = () => {
+import data from "../assets/data.js";
+const List = ({ audioRef }) => {
+  const dataArray = Object.entries(data);
   return (
     <div className="h-full w-full flex justify-center  overflow-hidden">
       <div className="w-full rounded-md flex flex-col overflow-hidden">
@@ -41,15 +43,19 @@ const List = () => {
           </div>
         </div>
         <div className="flex-1 bg-neutral-900 w-full rounded-md flex flex-col px-2 items-center py-2 gap-2 overflow-y-scroll">
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
+          {dataArray.map((song, i) => {
+            return (
+              <SongCard
+                audioRef={audioRef}
+                key={i}
+                title={song[1].title}
+                artist={song[1].artist}
+                image={song[1].smallImg}
+                bigImage={song[1].bigImg}
+                piece={song[1].piece}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

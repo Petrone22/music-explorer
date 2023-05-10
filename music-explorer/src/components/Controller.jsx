@@ -1,6 +1,4 @@
-// big bg, small bg, description, play song, page title, page subtitle
-
-import React, { useRef, useCallback } from "react";
+import React from "react";
 import play from "../assets/playMain.svg";
 import pause from "../assets/pause.svg";
 import backbtn from "../assets/back.svg";
@@ -16,9 +14,18 @@ const Controller = ({ audioRef, currentTime }) => {
   const smallBG = useSelector((state) => state.smallBG.value);
   const runtime = useSelector((state) => state.runtime.value);
   const dispatch = useDispatch();
-  const playAnimationRef = useRef();
-  const progressBarRef = useRef();
-  console.log(currentTime);
+
+  const formatTime = (time) => {
+    if (time && !isNaN(time)) {
+      const minutes = Math.floor(time / 60);
+      const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+      const seconds = Math.floor(time % 60);
+      const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+      return `${formatMinutes}:${formatSeconds}`;
+    }
+    return "00:00";
+  };
+
   return (
     <div
       className="rounded-md flex items-center justify- mb-4 lg:justify-center gap-6"
@@ -30,7 +37,9 @@ const Controller = ({ audioRef, currentTime }) => {
       <div className=" rounded-md p-2 top-4 lg:flex gap-2 items-center ">
         <img src={smallBG} className="w-14 rounded-md " alt="background" />
         <div className="flex flex-col justify-end">
-          <span className="hidden lg:block font-circular">{title}</span>
+          <span className="hidden lg:block font-circular whitespace-nowrap">
+            {title}
+          </span>
           <span className="hidden lg:block whitespace-nowrap font-semibold">
             {subTitle}
           </span>
@@ -38,7 +47,14 @@ const Controller = ({ audioRef, currentTime }) => {
       </div>
       <div className="w-full flex flex-col ">
         <div className="flex gap-6 p-2 items-center justify-center">
-          <img src={backbtn} alt="back" className="active:scale-95" />
+          <img
+            src={backbtn}
+            alt="back"
+            className="active:scale-95"
+            onClick={() => {
+              audioRef.current.currentTime -= 30;
+            }}
+          />
 
           <img
             src={mediaIsPlaying ? pause : play}
@@ -59,13 +75,15 @@ const Controller = ({ audioRef, currentTime }) => {
             src={frontbtn}
             alt="front"
             className="active:scale-95"
-            onClick={() => {}}
+            onClick={() => {
+              audioRef.current.currentTime += 30;
+            }}
           />
         </div>
         <div className="flex gap-6  items-center justify-center relative">
           <input
             type="range"
-            className="w-10/12"
+            className="w-9/12"
             max={audioRef.current ? audioRef.current.duration : "0"}
             step={1}
             value={audioRef.current ? audioRef.current.currentTime : "0"}
@@ -73,11 +91,11 @@ const Controller = ({ audioRef, currentTime }) => {
               audioRef.current.currentTime = e.target.value;
             }}
           />
-          <span className="absolute font-thin text-md -right-3 lg:font-normal lg:text-base lg:right-8 ">
+          <span className="absolute font-thin text-md -right-3 lg:font-normal lg:text-base lg:right-16 ">
             {runtime}
           </span>
-          <span className="absolute font-thin text-md left-0 lg:font-normal lg:text-base lg:left-14 ">
-            0
+          <span className="absolute font-thin text-md left-0 lg:font-normal lg:text-base lg:left-16 ">
+            {formatTime(audioRef.current.currentTime)}
           </span>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const desciptionSlice = createSlice({
   name: "description",
   initialState: {
-    value: "THIS IS A DESCRIPTION",
+    value: "Play a song to see it's description.",
   },
   reducers: {
     changeDescription: (state, action) => {

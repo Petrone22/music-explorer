@@ -32,6 +32,7 @@ const songList = ({ audioRef }) => {
             album={song[1].album}
             runtime={song[1].runtime}
             piece={song[1].piece}
+            link={song[1].link}
           />
         );
       })}

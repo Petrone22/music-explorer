@@ -19,6 +19,7 @@ const BigSongCard = ({
   runtime,
   bigImage,
   piece,
+  link,
 }) => {
   const dispatch = useDispatch();
   const startPlayingSong = () => {
@@ -32,6 +33,7 @@ const BigSongCard = ({
     audioRef.current.load();
     audioRef.current.src = trackSRC;
     audioRef.current.play();
+    console.log(trackSRC);
   };
 
   const [hovered, setHovered] = useState(false);
@@ -66,7 +68,7 @@ const BigSongCard = ({
       <div className="w-full flex  justify-end">
         <div className="font-medium w-full hidden lg:block ">{album}</div>
         <div className="font-medium  w-full hidden lg:block ">{type}</div>
-        <a target="_blank" href="https://www.spotify.com" className="w-20">
+        <a target="_blank" href={link} className="w-20">
           <img src={spotify} alt="Song Link" className="" />
         </a>
       </div>
