@@ -103,7 +103,7 @@ const Controller = ({ audioRef, currentTime }) => {
             {runtime}
           </span>
           <span className="absolute font-thin text-md left-0 lg:font-normal lg:text-base lg:left-16 ">
-            {audioRef.current.currentTime ? (
+            {mediaIsPlaying ? (
               <a className="pointer-events-none">
                 {formatTime(audioRef.current.currentTime)}
               </a>
